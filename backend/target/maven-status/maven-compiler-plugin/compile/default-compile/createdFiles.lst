@@ -1,0 +1,11 @@
+com\example\auth\config\SecurityConfig.class
+com\example\auth\entity\User.class
+com\example\auth\exception\ApiError.class
+com\example\auth\dto\SignUpRequest.class
+com\example\auth\exception\GlobalExceptionHandler.class
+com\example\auth\dto\SignUpResponse.class
+com\example\auth\service\AuthService.class
+com\example\auth\controller\AuthController.class
+com\example\auth\exception\EmailAlreadyExistsException.class
+com\example\auth\repository\UserRepository.class
+com\example\auth\AuthBackendApplication.class
