@@ -1,0 +1,8 @@
+/* Minimal dashboard styles that align with existing card layout */
+.page-shell { display:flex; align-items:center; justify-content:center; padding:24px; }
+.signup-card { width:100%; max-width:420px; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.06); padding:20px; }
+.card-header .eyebrow { color:#6b7280; font-weight:600; margin:0; }
+.card-header h1 { margin:6px 0 0 0; font-size:1.5rem; }
+.subtitle { color:#6b7280; margin-top:6px; }
+.submit-button { background:#2563eb; color:#fff; border:none; padding:10px 14px; border-radius:6px; cursor:pointer; }
+.submit-button:disabled { opacity:0.6; cursor:not-allowed; }

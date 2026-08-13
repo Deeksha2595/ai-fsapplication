@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 
 export interface SignUpRequest {
@@ -40,7 +41,7 @@ export class AuthService {
   private base = environment.apiBaseUrl;
   private tokenKey = 'auth_token';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signup(payload: SignUpRequest): Observable<SignUpResponse> {
     return this.http.post<SignUpResponse>(`${this.base}/api/auth/signup`, payload);
@@ -72,5 +73,23 @@ export class AuthService {
     } catch (e) {
       return null;
     }
+  }
+
+  logout(): void {
+    try {
+      localStorage.removeItem(this.tokenKey);
+    } catch (e) {
+      // ignore
+    }
+    // navigate to login after clearing token
+    try {
+      this.router.navigate(['/login']).catch(() => {});
+    } catch (e) {
+      // ignore navigation errors
+    }
+  }
+
+  me() {
+    return this.http.get<UserResponse>(`${this.base}/api/users/me`);
   }
 }
