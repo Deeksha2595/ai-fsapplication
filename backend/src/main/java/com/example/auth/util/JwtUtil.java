@@ -53,4 +53,21 @@ public class JwtUtil {
     public long getExpirationSeconds() {
         return expirationSeconds;
     }
+
+    /**
+     * Validate the token signature and expiration and return the subject as a user id.
+     * @param token the JWT token string
+     * @return user id parsed from subject
+     */
+    public Long validateAndExtractUserId(String token) {
+        var claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
+        String subject = claims.getSubject();
+        if (subject == null) throw new IllegalArgumentException("JWT subject (user id) is missing");
+        try {
+            return Long.valueOf(subject);
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException("Invalid user id in JWT subject", ex);
+        }
+    }
 }
+
